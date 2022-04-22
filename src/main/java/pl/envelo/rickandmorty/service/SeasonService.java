@@ -5,11 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import pl.envelo.rickandmorty.model.Episode;
 import pl.envelo.rickandmorty.model.Info;
-import pl.envelo.rickandmorty.model.Result;
 import pl.envelo.rickandmorty.model.Season;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -52,9 +48,9 @@ public class SeasonService {
 
         for (int i = 1; i <= numberOfAllEpisodes; i++) {
 
-                episode = episodeService.getSingleEpisode(i);
+            episode = episodeService.getSingleEpisode(i);
 
-                String seasonOfEpisode = episode.getEpisode();
+            String seasonOfEpisode = episode.getEpisode();
 
             if (seasonOfEpisode.contains(currentSeason)) {
 

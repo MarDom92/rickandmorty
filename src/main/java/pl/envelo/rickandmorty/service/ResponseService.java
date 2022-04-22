@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import pl.envelo.rickandmorty.model.Episode;
 import pl.envelo.rickandmorty.model.Info;
 import pl.envelo.rickandmorty.model.Response;
 
