@@ -15,7 +15,6 @@ public class ResponseController {
 
     private final ResponseService responseService;
 
-    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping(path = "/")
     public Response getResponse() {
         return responseService.getResponse();
