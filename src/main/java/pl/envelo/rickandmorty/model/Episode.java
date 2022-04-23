@@ -15,7 +15,7 @@ public class Episode {
     @JsonProperty("air_date")
     private String airDate;
     private String episode;
-    public List<String> characters = null;
+    private List<String> characters = null;
     private String url;
     private String created;
 }

@@ -2,22 +2,19 @@ package pl.envelo.rickandmorty.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
 import pl.envelo.rickandmorty.model.Episode;
 import pl.envelo.rickandmorty.model.Info;
 import pl.envelo.rickandmorty.model.Season;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
 public class SeasonService {
 
-    private final RestTemplate restTemplate;
     private final EpisodeService episodeService;
     private final ResponseService responseService;
-
-    public int getNumberOfEpisodes(Info info) {
-        return info.getCount();
-    }
 
     public int getNumberOfSeasons(Info info) {
 
@@ -29,6 +26,19 @@ public class SeasonService {
         numberOfSeasons = Integer.parseInt(last.substring(last.indexOf('S') + 1, last.indexOf('E')));
 
         return numberOfSeasons;
+    }
+
+    public Map<Integer, Integer> getAllSeasonsWithNumberOfEpisodes(Info info) {
+
+        int counter = getNumberOfSeasons(info);
+
+        Map<Integer, Integer> seasonsMap = new HashMap<>();
+
+        for (int i = 1; i <= counter; i++) {
+
+            seasonsMap.put(i, getAllEpisodesOfSingleSeason(i).getNumberOfEpisodes());
+        }
+        return seasonsMap;
     }
 
     public Season getAllEpisodesOfSingleSeason(int id) {
@@ -44,7 +54,7 @@ public class SeasonService {
             currentSeason = "S" + id + "E";
         }
 
-        int numberOfAllEpisodes = getNumberOfEpisodes(responseService.getInfo());
+        int numberOfAllEpisodes = episodeService.getNumberOfAllEpisodes(responseService.getInfo());
 
         for (int i = 1; i <= numberOfAllEpisodes; i++) {
 
