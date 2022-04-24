@@ -9,9 +9,8 @@ import pl.envelo.rickandmorty.model.Season;
 import pl.envelo.rickandmorty.model.dto.EpisodeDto;
 import pl.envelo.rickandmorty.model.dto.SeasonDto;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 @Service
 @RequiredArgsConstructor
@@ -32,17 +31,17 @@ public class SeasonService {
         return numberOfSeasons;
     }
 
-    public Map<Integer, Integer> getAllSeasonsWithNumberOfEpisodes(Info info) {
+    public List<SeasonDto> getAllSeasonsWithNumberOfEpisodes(Info info) {
 
         int counter = getNumberOfSeasons(info);
 
-        Map<Integer, Integer> seasonsMap = new HashMap<>();
+        List<SeasonDto> seasons = new ArrayList<>();
 
         for (int i = 1; i <= counter; i++) {
 
-            seasonsMap.put(i, getAllEpisodesOfSingleSeason(i).getEpisodes().size());
+            seasons.add(getAllEpisodesOfSingleSeason(i));
         }
-        return seasonsMap;
+        return seasons;
     }
 
     public SeasonDto getAllEpisodesOfSingleSeason(int id) {

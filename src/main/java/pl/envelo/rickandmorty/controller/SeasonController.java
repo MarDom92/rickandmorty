@@ -5,12 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.envelo.rickandmorty.model.Season;
 import pl.envelo.rickandmorty.model.dto.SeasonDto;
 import pl.envelo.rickandmorty.service.ResponseService;
 import pl.envelo.rickandmorty.service.SeasonService;
 
-import java.util.Map;
+import java.util.List;
 
 @RestController
 @AllArgsConstructor
@@ -21,7 +20,7 @@ public class SeasonController {
     private final ResponseService responseService;
 
     @GetMapping(path = "/")
-    public Map<Integer, Integer> getAllSeasons() {
+    public List<SeasonDto> getAllSeasons() {
         return seasonService.getAllSeasonsWithNumberOfEpisodes(responseService.getInfo());
     }
 
