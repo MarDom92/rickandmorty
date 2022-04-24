@@ -7,6 +7,7 @@ import pl.envelo.rickandmorty.model.Info;
 import pl.envelo.rickandmorty.model.Season;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -14,7 +15,6 @@ import java.util.Map;
 public class SeasonService {
 
     private final EpisodeService episodeService;
-    private final ResponseService responseService;
 
     public int getNumberOfSeasons(Info info) {
 
@@ -44,7 +44,6 @@ public class SeasonService {
     public Season getAllEpisodesOfSingleSeason(int id) {
 
         Season season = new Season(id);
-        Episode episode;
 
         String currentSeason = "";
 
@@ -54,17 +53,17 @@ public class SeasonService {
             currentSeason = "S" + id + "E";
         }
 
-        int numberOfAllEpisodes = episodeService.getNumberOfAllEpisodes(responseService.getInfo());
+        List<Episode> episodes = episodeService.getAllEpisodes();
 
-        for (int i = 1; i <= numberOfAllEpisodes; i++) {
+        int numberOfAllEpisodes = episodes.size();
 
-            episode = episodeService.getSingleEpisode(i);
+        for (int i = 0; i < numberOfAllEpisodes; i++) {
 
-            String seasonOfEpisode = episode.getEpisode();
+            String seasonOfEpisode = episodes.get(i).getEpisode();
 
             if (seasonOfEpisode.contains(currentSeason)) {
 
-                season.addEpisode(episode);
+                season.addEpisode(episodes.get(i));
             }
         }
 

@@ -6,7 +6,6 @@ import org.springframework.web.client.RestTemplate;
 import pl.envelo.rickandmorty.model.Episode;
 import pl.envelo.rickandmorty.model.Info;
 import pl.envelo.rickandmorty.model.Response;
-import pl.envelo.rickandmorty.model.Season;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +40,7 @@ public class EpisodeService {
 
         return episode;
     }
+
     public int getNumberOfAllEpisodes(Info info) {
         return info.getCount();
     }
