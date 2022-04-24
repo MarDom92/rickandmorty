@@ -40,7 +40,7 @@ public class SeasonService {
 
         for (int i = 1; i <= counter; i++) {
 
-            seasonsMap.put(i, getAllEpisodesOfSingleSeason(i).getNumberOfEpisodes());
+            seasonsMap.put(i, getAllEpisodesOfSingleSeason(i).getEpisodes().size());
         }
         return seasonsMap;
     }

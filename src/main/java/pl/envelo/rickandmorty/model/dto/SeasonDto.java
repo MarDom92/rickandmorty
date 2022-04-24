@@ -10,6 +10,5 @@ import java.util.List;
 @Getter
 public class SeasonDto {
 
-    private Integer numberOfEpisodes;
     private List<EpisodeDto> episodes = new ArrayList<>();
 }
