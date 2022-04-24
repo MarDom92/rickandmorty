@@ -5,10 +5,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.envelo.rickandmorty.model.Episode;
+import pl.envelo.rickandmorty.model.dto.EpisodeDto;
 import pl.envelo.rickandmorty.service.EpisodeService;
 import pl.envelo.rickandmorty.service.ResponseService;
-import pl.envelo.rickandmorty.service.SeasonService;
 
 import java.util.List;
 
@@ -19,15 +18,14 @@ public class EpisodeController {
 
     private final ResponseService responseService;
     private final EpisodeService episodeService;
-    private final SeasonService seasonService;
 
     @GetMapping(path = "/")
-    public List<Episode> getAllEpisodes() {
+    public List<EpisodeDto> getAllEpisodes() {
         return episodeService.getAllEpisodes();
     }
 
     @GetMapping(path = "/{id}")
-    public Episode getSingleEpisode(@PathVariable("id") int id) {
+    public EpisodeDto getSingleEpisode(@PathVariable("id") int id) {
         return episodeService.getSingleEpisode(id);
     }
 

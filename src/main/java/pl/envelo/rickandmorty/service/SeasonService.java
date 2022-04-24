@@ -1,10 +1,13 @@
 package pl.envelo.rickandmorty.service;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import pl.envelo.rickandmorty.model.Episode;
 import pl.envelo.rickandmorty.model.Info;
 import pl.envelo.rickandmorty.model.Season;
+import pl.envelo.rickandmorty.model.dto.EpisodeDto;
+import pl.envelo.rickandmorty.model.dto.SeasonDto;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +17,7 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class SeasonService {
 
+    private final ModelMapper modelMapper;
     private final EpisodeService episodeService;
 
     public int getNumberOfSeasons(Info info) {
@@ -41,7 +45,7 @@ public class SeasonService {
         return seasonsMap;
     }
 
-    public Season getAllEpisodesOfSingleSeason(int id) {
+    public SeasonDto getAllEpisodesOfSingleSeason(int id) {
 
         Season season = new Season(id);
 
@@ -53,7 +57,7 @@ public class SeasonService {
             currentSeason = "S" + id + "E";
         }
 
-        List<Episode> episodes = episodeService.getAllEpisodes();
+        List<EpisodeDto> episodes = episodeService.getAllEpisodes();
 
         int numberOfAllEpisodes = episodes.size();
 
@@ -63,12 +67,12 @@ public class SeasonService {
 
             if (seasonOfEpisode.contains(currentSeason)) {
 
-                season.addEpisode(episodes.get(i));
+                season.addEpisode(modelMapper.map(episodes.get(i), Episode.class));
             }
         }
 
         season.setNumberOfEpisodes(season.getEpisodes().size());
 
-        return season;
+        return modelMapper.map(season, SeasonDto.class);
     }
 }

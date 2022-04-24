@@ -1,15 +1,13 @@
 package pl.envelo.rickandmorty.model;
 
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Getter
 @Setter
-@NoArgsConstructor
+@Getter
 public class Season {
 
     private Integer id;

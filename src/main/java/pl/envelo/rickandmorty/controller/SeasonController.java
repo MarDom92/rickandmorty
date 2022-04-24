@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.envelo.rickandmorty.model.Season;
+import pl.envelo.rickandmorty.model.dto.SeasonDto;
 import pl.envelo.rickandmorty.service.ResponseService;
 import pl.envelo.rickandmorty.service.SeasonService;
 
@@ -25,7 +26,7 @@ public class SeasonController {
     }
 
     @GetMapping(path = "/{id}")
-    public Season getEpisodesOfSingleSeason(@PathVariable("id") int id) {
+    public SeasonDto getEpisodesOfSingleSeason(@PathVariable("id") int id) {
 
         return seasonService.getAllEpisodesOfSingleSeason(id);
     }
